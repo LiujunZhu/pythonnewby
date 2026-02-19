@@ -3,8 +3,31 @@
 // =============================================================================
 
 /**
+ * Run this function directly from the Apps Script editor to set up the workbook.
+ * (No UI dialog needed — safe to call from the editor.)
+ */
+function runSetup() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  setupChartOfAccountsSheet(ss);
+  setupJournalSheet(ss);
+  setupGeneralLedgerSheet(ss);
+  setupCustomersSheet(ss);
+  setupVendorsSheet(ss);
+  setupDepartmentsSheet(ss);
+  setupARInvoicesSheet(ss);
+  setupARPaymentsSheet(ss);
+  setupAPBillsSheet(ss);
+  setupAPPaymentsSheet(ss);
+  setupBankStatementSheet(ss);
+  setupReconciliationSheet(ss);
+  setupDashboardSheet(ss);
+  insertSampleData(ss);
+  ss.toast('Setup complete! Your accounting workbook is ready to use.', 'Setup', 10);
+}
+
+/**
  * Creates all required sheets with headers and formatting.
- * Run this once when setting up the workbook for the first time.
+ * Called from the Accounting menu (requires UI context).
  */
 function setupSpreadsheet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
